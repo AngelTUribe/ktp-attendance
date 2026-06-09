@@ -1,0 +1,492 @@
+:root {
+  --ktp-navy: #0a1b35;
+  --ktp-navy-dark: #050d1a;
+  --ktp-gold: #c6a355;
+  --ktp-gold-hover: #e0c279;
+  --ktp-cream: #f8f9fa;
+  --ktp-red: #ff4b4b;
+  --ktp-green: #00e676;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(32, 26, 13, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* 1. Animated Deep Space Background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: radial-gradient(circle at 50% 0%, var(--ktp-navy), var(--ktp-navy-dark) 80%);
+  background-attachment: fixed;
+  color: var(--ktp-cream);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(198, 163, 85, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(198, 163, 85, 0.5); }
+  100% { box-shadow: 0 0 10px rgba(198, 163, 85, 0.2); }
+}
+
+/* Base Layout */
+.main-container {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 10px;
+  animation: fadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-right: 20px;
+}
+
+.content-wrapper {
+  transition: margin 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.hero-margin { margin-top: 40vh; }
+.standard-margin { margin-top: 40px; }
+
+.user-flow-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+/* Utility Classes */
+.w-100 { width: 100%; }
+.max-w-600 { max-width: 600px; width: 100%; }
+.max-w-300 { max-width: 300px; }
+.flex-1 { flex: 1; }
+.m-0 { margin: 0; }
+.mt-5 { margin-top: 5px; }
+.mt-25 { margin-top: 25px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+
+/* FIX: Changed these from shorthand "padding: 15px 0" to explicit axes so they don't overwrite each other */
+.py-15 { padding-top: 15px; padding-bottom: 15px; }
+.py-20 { padding-top: 20px; padding-bottom: 20px; }
+.px-30 { padding-left: 30px; padding-right: 30px; }
+
+.text-18 { font-size: 18px; }
+.gold-text { color: var(--ktp-gold); font-weight: 600; letter-spacing: 0.5px; }
+.text-muted { color: #aaa; }
+
+/* 2. Premium Glassmorphism Cards */
+.card {
+  background: var(--glass-bg);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  margin-top: 20px;
+  width: 100%;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  animation: fadeSlideUp 0.6s ease-out forwards;
+}
+
+/* 3. Fluid, Glowing Buttons */
+button {
+  background: linear-gradient(135deg, var(--ktp-gold), #b3914a);
+  color: var(--ktp-navy-dark);
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(198, 163, 85, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(198, 163, 85, 0.4);
+  background: linear-gradient(135deg, var(--ktp-gold-hover), var(--ktp-gold));
+}
+
+button:active:not(:disabled) { transform: translateY(1px); }
+button:disabled { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); box-shadow: none; cursor: not-allowed; }
+
+/* Special Buttons */
+.admin-toggle-btn { background: transparent; border: 1px solid var(--ktp-gold); color: var(--ktp-gold); box-shadow: none; }
+.admin-toggle-btn:hover { background: rgba(198, 163, 85, 0.1); }
+.btn-outline { background: transparent; border: 1px solid var(--ktp-gold); color: var(--ktp-gold); }
+.btn-outline:hover { background: rgba(198, 163, 85, 0.1); }
+.btn-danger { background: linear-gradient(135deg, #ff4b4b, #d9534f); color: white; }
+.btn-success { background: linear-gradient(135deg, #00e676, #5cb85c); color: var(--ktp-navy-dark); }
+.btn-link { background: transparent; color: var(--ktp-gold); text-decoration: none; text-transform: none; font-weight: normal; box-shadow: none; }
+.btn-link:hover { text-decoration: underline; background: transparent; box-shadow: none; }
+
+/* 4. Modern Inputs */
+input, select {
+  width: 100%;
+  padding: 16px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--ktp-cream);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+input:focus {
+  outline: none;
+  border-color: var(--ktp-gold);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(198, 163, 85, 0.15);
+}
+
+/* 5. Smooth Roster Grid & Selection Card */
+.search-bar { margin-bottom: 20px; border-radius: 30px; padding: 14px 24px; }
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  max-height: 350px;
+  overflow-y: auto;
+  margin-bottom: 25px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.roster-grid::-webkit-scrollbar { width: 6px; }
+.roster-grid::-webkit-scrollbar-thumb { background: rgba(198, 163, 85, 0.3); border-radius: 10px; }
+
+.member-btn {
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--ktp-cream);
+  border-radius: 30px;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: normal;
+  box-shadow: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.member-btn:hover:not(:disabled) {
+  background: rgba(198, 163, 85, 0.1);
+  border-color: var(--ktp-gold);
+  transform: translateY(-2px) scale(1.02);
+}
+.member-btn.selected {
+  background: var(--ktp-gold);
+  color: var(--ktp-navy-dark);
+  font-weight: bold;
+  animation: pulseGlow 2s infinite;
+}
+
+.selected-profile-card {
+  background: rgba(198, 163, 85, 0.05);
+  border: 1px solid var(--ktp-gold);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  animation: fadeSlideUp 0.4s ease-out forwards;
+}
+
+/* 6. Admin Dashboard Polish */
+.admin-tabs {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.tab-btn { background: transparent; color: rgba(255,255,255,0.6); border: none; padding: 10px 20px; text-transform: none; box-shadow: none; }
+.tab-btn.active { color: var(--ktp-gold); border-bottom: 2px solid var(--ktp-gold); border-radius: 0; background: transparent; }
+
+.meeting-panel {
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(198, 163, 85, 0.1);
+  border-radius: 16px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+th { color: var(--ktp-gold); padding: 15px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; border-bottom: 1px solid rgba(198, 163, 85, 0.2); }
+td { background: rgba(255,255,255,0.02); padding: 15px; }
+tr td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+tr td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+/* --- Missing Image Fixes --- */
+.table-img { 
+  height: 60px; 
+  width: 80px; 
+  object-fit: cover; /* Crops the photo slightly so it doesn't squish */
+  border-radius: 6px; 
+  border: 1px solid rgba(198, 163, 85, 0.4);
+}
+
+.verify-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.verify-details { margin: 20px 0; }
+.verify-meta { margin: 0 0 15px 0; color: rgba(255, 255, 255, 0.6); }
+
+.verify-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain; /* Ensures the whole face is visible during verification */
+  border-radius: 12px;
+  border: 2px solid var(--ktp-gold);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.verified-cell { text-align: center; color: rgba(255,255,255,0.4); }
+.verified-cell.is-verified { color: var(--ktp-green); font-weight: bold; }
+/* 7. Animated Progress Bar & Timer Header */
+.timer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.progress-container {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  height: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+.progress-bar {
+  height: 100%;
+  transition: width 1s linear;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* 8. Refined Wordle */
+.wordle-row { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 6px; justify-content: center; }
+.wordle-cell {
+  width: 55px;
+  height: 55px;
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  font-size: 28px;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.wordle-cell.filled { border-color: rgba(198, 163, 85, 0.5); }
+.wordle-cell.correct { background: var(--ktp-green); border-color: var(--ktp-green); color: var(--ktp-navy-dark); box-shadow: 0 0 15px rgba(0, 230, 118, 0.3); }
+.wordle-cell.present { background: var(--ktp-gold); border-color: var(--ktp-gold); color: var(--ktp-navy-dark); }
+.wordle-cell.absent { background: rgba(255,255,255,0.05); border-color: transparent; color: rgba(255,255,255,0.4); }
+
+/* --- Keyboard Layout & Stagger Logic --- */
+.keyboard { margin-top: 25px; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; }
+.keyboard-row { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 6px; justify-content: center; width: 100%; margin-bottom: 6px; }
+
+/* The exact Wordle indent on the middle row */
+.keyboard-row:nth-child(2)::before,
+.keyboard-row:nth-child(2)::after {
+  content: '';
+  flex: 0.5; 
+}
+
+.key-btn { 
+  background: rgba(255,255,255,0.12); 
+  border-radius: 4px; 
+  box-shadow: none; 
+  font-weight: bold; 
+  flex: 1; 
+  min-width: 0; 
+  padding: 16px 2px; 
+  text-align: center; 
+  font-size: 14px; 
+  color: var(--ktp-cream);
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.key-btn.wide { flex: 1.5; font-size: 11px; } /* Proportionally wider without breaking */
+.key-btn:active { background: rgba(198, 163, 85, 0.4); transform: scale(0.95); }
+
+/* 9. Floating Logo Animation */
+.floating-logo { position: absolute; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.hero-pos { top: 35vh; left: 50%; transform: translate(-50%, -50%) scale(2.8); }
+.header-pos { top: 25px; left: 40px; transform: translate(0, 0) scale(1); }
+.logo-greek { font-weight: normal; margin: 0; line-height: 1; letter-spacing: 2px; text-shadow: 0 0 20px rgba(198, 163, 85, 0.4); }
+.letter { display: inline-block; }
+.hero-pos .letter-k { animation: float 4s ease-in-out infinite; }
+.hero-pos .letter-theta { animation: float 4s ease-in-out infinite 0.5s; }
+.hero-pos .letter-pi { animation: float 4s ease-in-out infinite 1s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.logo-chapter {
+  font-weight: normal; margin-top: 10px; font-size: 14px; letter-spacing: 4px; color: rgba(255,255,255,0.7); text-transform: uppercase;
+}
+
+/* =========================================
+   Mobile Tweaks (Max Width: 768px)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Respect iOS safe areas (the notch and address bar) */
+  #root { 
+    padding: max(20px, env(safe-area-inset-top)) 15px 20px 15px; 
+  }
+  
+  /* Push content down so it clears the Safari header completely */
+  .standard-margin { margin-top: 70px !important; }
+  .app-header { margin-bottom: 10px; }
+  
+  .hero-pos { transform: translate(-50%, -50%) scale(1.6); }
+  .header-pos { top: 15px; left: 15px; transform: scale(0.75); }
+
+  /* Slightly more breathing room inside the cards */
+  .card { padding: 30px 15px; margin-top: 10px; }
+  .meeting-panel { padding: 25px 15px; }
+
+  /* Fix the overlapping/squished buttons */
+  .action-buttons, .table-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 14px; 
+  }
+  
+  .action-buttons button, .table-actions button {
+    width: 100%;
+    margin: 0 !important; 
+  }
+
+  /* Center the Table Header clearly */
+  .table-header-row {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 20px;
+  }
+  .table-header-row h3 { 
+    margin-bottom: 15px; 
+    text-align: center; 
+    width: 100%; 
+  }
+
+  /* Scale down base elements to fit the screen better */
+  button { padding: 14px 18px; font-size: 14px; }
+  input, select { padding: 14px 16px; font-size: 15px; }
+
+  /* Admin Tabs */
+  .admin-tabs { padding-bottom: 10px; margin-bottom: 20px; }
+  .tab-btn { padding: 8px 12px; font-size: 13px; }
+
+  /* Table */
+  .table-responsive { overflow-x: auto; }
+  th, td { padding: 12px 10px; font-size: 13px; }
+
+  /* --- Wordle Game Mobile Fixes --- */
+  .wordle-board { width: 100%; margin: 10px 0; }
+  
+  /* Make boxes scale dynamically to phone width so they never overflow */
+  .wordle-cell { 
+    width: 13vw; 
+    height: 13vw; 
+    max-width: 55px; 
+    max-height: 55px; 
+    font-size: 24px; 
+  }
+  
+  /* Shrink keyboard gaps and text to fit narrow iPhones perfectly */
+  .keyboard { margin-top: 15px; }
+  .keyboard-row { gap: 4px; margin-bottom: 4px; }
+  .key-btn { padding: 14px 0; font-size: 13px; }
+  .key-btn.wide { font-size: 10px; } /* max-width removed! */
+}
+
+/* --- Overall Stats Table Additions --- */
+.clickable-row { 
+  cursor: pointer; 
+  transition: background 0.2s; 
+}
+.clickable-row:hover { 
+  background: rgba(198, 163, 85, 0.05); 
+}
+.details-row td { 
+  background: rgba(0, 0, 0, 0.3) !important; 
+  padding: 0 !important; 
+}
+.absences-details { 
+  padding: 20px; 
+  border-left: 2px solid var(--ktp-gold); 
+  margin: 10px; 
+  border-radius: 4px; 
+  text-align: left;
+}
+.missed-meetings-list { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+}
+.missed-meeting-item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: rgba(255,255,255,0.02); 
+  padding: 10px 15px; 
+  border-radius: 8px; 
+  border: 1px solid rgba(255,255,255,0.05); 
+}
+.btn-sm { 
+  padding: 8px 16px; 
+  font-size: 12px; 
+  border-radius: 6px; 
+}
+
+@media (max-width: 768px) {
+  .missed-meeting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .btn-sm { width: 100%; margin: 0; }
+}
